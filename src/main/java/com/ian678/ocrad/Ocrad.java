@@ -98,6 +98,7 @@ public class Ocrad {
             out += "\n";
         }
 
+        m.OCRAD_close(ocrdes);
         return out;
     }
     public static void main(String[] args) {
