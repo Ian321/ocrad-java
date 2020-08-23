@@ -8,7 +8,7 @@ import java.io.File;
 public class OcradTest {
     public static Ocrad m = new Ocrad();
     static {
-        System.loadLibrary("ocrad-java");
+        Ocrad.setUp();
     }
 
     @Test public void version() {
