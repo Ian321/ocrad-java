@@ -22,8 +22,12 @@ public class OcradTest {
             }
         }
 
-        String lib = new File(Ocrad.class.getClassLoader().getResource(name).getFile()).getAbsolutePath();
-        System.loadLibrary(lib);
+        String dir = new File(Ocrad.class.getClassLoader().getResource(name).getFile()).getParent();
+
+        String java_library_path = System.getProperty("java.library.path");
+        System.setProperty("java.library.path", java_library_path + File.pathSeparator + dir);
+        java_library_path = System.getProperty("java.library.path");
+        System.loadLibrary("ocrad-java");
     }
 
     @Test public void version() {
@@ -50,7 +54,6 @@ public class OcradTest {
 
         // We will only check the second line...
         String s = m.OCRAD_result_line(ocrdes, 0, 1);
-        System.out.println(s);
         assertTrue("Line #2: " + s, s.equals("ABCDEFGHIJKLMN\n"));
  
         err = m.OCRAD_close(ocrdes);
