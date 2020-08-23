@@ -8,25 +8,6 @@ import java.io.File;
 public class OcradTest {
     public static Ocrad m = new Ocrad();
     static {
-        String name = "ocrad-java";
-        String osName = System.getProperty("os.name").toLowerCase();
-
-        if (osName.contains("win")) {
-            name += ".dll";
-        } else {
-            name = "lib" + name;
-            if (osName.contains("mac")) {
-                name += ".dylib";
-            } else {
-                name += ".so";
-            }
-        }
-
-        String dir = new File(Ocrad.class.getClassLoader().getResource(name).getFile()).getParent();
-
-        String java_library_path = System.getProperty("java.library.path");
-        System.setProperty("java.library.path", java_library_path + File.pathSeparator + dir);
-        java_library_path = System.getProperty("java.library.path");
         System.loadLibrary("ocrad-java");
     }
 
